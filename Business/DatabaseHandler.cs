@@ -10,21 +10,14 @@ namespace KickTask.KickTask
 {
     public class DatabaseHandler : IDatabaseHandler
     {
-        public void InsertAccount(Account worker)
+        public ITaskRepository TaskRepository { get; set; }
+        public IAccountRepository AccountRepository { get; set; }
+
+        public DatabaseHandler()
         {
-            //using (ISession session = NhibernateSession.OpenSession())
-            //using (ITransaction transaction = session.BeginTransaction())
-            //{
-            //    try
-            //    {
-            //        session.Save(worker);
-            //        transaction.Commit();
-            //    }
-            //    catch (Exception)
-            //    {
-            //        transaction.Rollback();
-            //    }
-            //}
+            var connection = new KickTaskConnection();
+            TaskRepository = new TaskRepository(connection);
+            AccountRepository = new AccountRepository(connection);
         }
-    }           
+    }
 }

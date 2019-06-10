@@ -8,13 +8,11 @@ namespace KickTask.Models
 {
     public class MainModel
     {
-        private readonly IDatabaseHandler _databaseHandler;
-
-        public MainModel(IDatabaseHandler databaseHandler)
+        public MainModel(IAuthentificationManager authentificationManager)
         {
-            _databaseHandler = databaseHandler;
+            this.authentificationManager = authentificationManager;
         }
         
-        public Account LoggedInAccount { get; set; }
+        public IAuthentificationManager authentificationManager { get; set; }
     }
 }

@@ -6,21 +6,22 @@
 <html>
 <body>
     @*TopImage*@
-    <div id="informationheader">
+    <div id="informationheader" style="margin-top: 50px;margin-bottom: 50px;">
         <img src="~/Content/Resources/logowithtext.svg" id="logo" />
     </div>
 
     @*NavBar*@
     <nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark" id="navigationBar">
-        <h1>KickTask</h1>
+        <a class="navbar-brand" href="#">KickTask</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
         <div class="collapse navbar-collapse" id="navigation">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="#" id="menuitem">Overview</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" id="menuitem">MyTasks</a>
-                </li>
+                </li>    
                 <li class="nav-item">
                     <a class="nav-link" href="#" id="menuitem" onclick="SignUp()" data-toggle="modal" data-target="#exampleModalCenter">Sign Up</a>
                 </li>

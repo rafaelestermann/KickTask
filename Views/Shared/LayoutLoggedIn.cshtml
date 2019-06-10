@@ -6,39 +6,36 @@
 <html>
 <body>
     @*TopImage*@
-    <div id="informationheader">
+    <div id="informationheader" style="margin-top: 50px;margin-bottom: 50px;">
         <img src="~/Content/Resources/logowithtext.svg" id="logo" />
     </div>
 
     @*NavBar*@
-<nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark" id="navigationBar">
-    <h1>KickTask</h1>
-    <div class="collapse navbar-collapse" id="navigation">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#" id="menuitem">Overview</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#" id="menuitem">Contacts</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#" id="menuitem">My Assignments</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#" id="menuitem" onclick="SignUp()" data-toggle="modal" data-target="#exampleModalCenter">Sign Up</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#" id="menuitem" onclick="SignIn()" data-toggle="modal" data-target="#exampleModalCenter">Sign In</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="Main/Account" id="menuitem">Account</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+    <nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark" id="navigationBar">
+        <a class="navbar-brand" href="#">KickTask</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
+        <div class="collapse navbar-collapse" id="navigation">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" id="menuitem">Overview</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Tasks", "Task")" id="menuitem">Tasks</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="menuitem">Partners</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="menuitem">Account</a>
+                </li>
+            </ul>
 
-
+            <a class="nav-link" href="@Url.Action("Logout", "Account")" id="menuitem" style="color: white;" onclick="SignOut()">Sign Out</a>
+        </div>
+    </nav>
 
     @*Container*@
     <div class="container"> @RenderBody() </div>

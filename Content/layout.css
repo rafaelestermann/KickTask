@@ -6,16 +6,18 @@
 #informationheader {
     position: relative;
     width: 100%;
-    background: whitesmoke;
     height: 230px;
 }
 
-#ashtontextlogo {
-    height: 230px;
-    background: whitesmoke;
-    float: left;
+#navigationBar {
+    background: #428bca;
+    height: 80px;
 }
 
+.linkColorWhite
+{
+    color: white;
+}
 
 #logo {
     position: absolute;
@@ -27,9 +29,6 @@
     height: 230px;
 }
 
-body {
-    background: whitesmoke;
-}
 
 #logotext
 {

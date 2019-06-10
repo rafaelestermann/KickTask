@@ -9,6 +9,7 @@ namespace KickTask.KickTask.Interfaces
 {
     public interface IDatabaseHandler
     {
-        void InsertAccount(Account account);
+        ITaskRepository TaskRepository { get; set; }
+        IAccountRepository AccountRepository { get; set; }
     }
 }

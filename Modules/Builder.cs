@@ -12,10 +12,10 @@ namespace KickTask.Modules
         public void Build()
         {
             Autofac.ContainerBuilder builder = new Autofac.ContainerBuilder();
-            builder.RegisterType<DatabaseHandler>().As<IDatabaseHandler>();
+            builder.RegisterType<DatabaseHandler>().As<IDatabaseHandler>().SingleInstance();
+            builder.RegisterType<AuthentificationManager>().As<IAuthentificationManager>().SingleInstance();
+            builder.RegisterType<KickTaskConnection>().SingleInstance();
             builder.RegisterType<MainModel>().SingleInstance();
-            builder.RegisterType<SignUpModel>();
-            builder.RegisterType<SignInModel>();
             Container = builder.Build();
         }
     }

@@ -7,45 +7,44 @@ using Autofac;
 using Autofac.Core;
 using System.Web.UI;
 using System.Linq;
+using KickTask.KickTask.Interfaces;
 
 namespace KickTask.Controllers
 {
     public class MainController : Controller
     {
+        IContainer container = Builder.Container;
+        IDatabaseHandler databaseHandler;
+        IAuthentificationManager authentificationManager;
+
+        public MainController()
+        {
+            databaseHandler = container.Resolve<IDatabaseHandler>();
+            authentificationManager = container.Resolve<IAuthentificationManager>();
+        }
 
         public ActionResult Main()
         {
-
-            var container = Builder.Container;
-            var model = container.Resolve<MainModel>();
-            UpdateModel(model);
             if (NotificationCenter.Notifications != null && NotificationCenter.Notifications.Any())
             {
                 ViewBag.JavascriptFunctions = NotificationCenter.Notifications;
                 NotificationCenter.Notifications = new List<string>();
             }
-            return View(model);
-        }
-        [HttpGet]
-        public ActionResult Account()
-        {
-            var container = Builder.Container;
-            var model = container.Resolve<MainModel>();   
+
+            var model = new MainModel(authentificationManager);
             return View(model);
         }
 
         [HttpGet]
         public ActionResult SignUp()
         {
-            var model = Builder.Container.Resolve<SignUpModel>();
-            return View("SignUp", model);
+            return View("SignUp");
         }
 
         [HttpGet]
         public ActionResult SignIn()
         {
-            var model = Builder.Container.Resolve<SignInModel>();
-            return View("SignIn", model);
+            return View("SignIn");
         }
     }
 }

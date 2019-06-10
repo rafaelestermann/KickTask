@@ -6,7 +6,7 @@
     ViewBag.Title = "Main";
 }
 
-@if(Model.LoggedInAccount != null)
+@if(Model.authentificationManager.SignedInAccount != null)
 {
     Layout = "~/Views/Shared/LayoutLoggedIn.cshtml";
 }
@@ -27,21 +27,7 @@ else
 }
 <br />
 
-@if (Model.LoggedInAccount == null)
-{
-    <p>nobody is logged in</p>
-}
-else
-{
-    @Model.LoggedInAccount.Fullname
-    @Html.ActionLink("Logout", "Logout", "Account")
-}
 
-
-
-
-<br />
-<br />
 
 @*ModalContainer*@
 <div class="modal fade" id="registrationModal" tabindex="-1" role="dialog"></div>

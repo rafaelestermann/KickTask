@@ -140,9 +140,16 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Business\AuthentificationManager.cs" />
+    <Compile Include="Business\Interfaces\IAuthentificationManager.cs" />
+    <Compile Include="Business\TaskRepository.cs" />
+    <Compile Include="Business\AccountRepository.cs" />
     <Compile Include="Business\DatabaseHandler.cs" />
+    <Compile Include="Business\Interfaces\IAccountRepository.cs" />
     <Compile Include="Business\Interfaces\IDatabaseHandler.cs" />
+    <Compile Include="Business\Interfaces\ITaskRepository.cs" />
     <Compile Include="Business\NotificationCenter.cs" />
+    <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Database\AccountService.cs" />
@@ -169,11 +176,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>KickTaskDataModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\LayoutModel.cs" />
-    <Compile Include="Models\MainModel.cs" />
-    <Compile Include="Models\SignInModel.cs" />
-    <Compile Include="Models\SignUpModel.cs" />
     <Compile Include="Models\Extended\AccountLogin.cs" />
+    <Compile Include="Models\MainModel.cs" />
     <Compile Include="Models\Status.cs">
       <DependentUpon>KickTaskDataModel.tt</DependentUpon>
     </Compile>
@@ -462,9 +466,11 @@
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Views\Main\Account.cshtml" />
     <Content Include="Views\Main\Main.cshtml" />
+    <Content Include="Views\Task\Tasks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Partner\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
