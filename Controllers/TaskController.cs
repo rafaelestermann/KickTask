@@ -21,17 +21,19 @@ namespace KickTask.Controllers
     {
         IContainer container = Builder.Container;
         IDatabaseHandler databaseHandler;
+        IAuthentificationManager authentificationManager;
 
         public TaskController()
         {
             databaseHandler = container.Resolve<IDatabaseHandler>();
+            authentificationManager = container.Resolve<IAuthentificationManager>();
         }
 
         [HttpGet]
         public ActionResult Tasks()
         {            
-            List<Task> tasks = databaseHandler.TaskRepository.GetTasksByAccount();
-            return View();
+            List<Task> tasks = databaseHandler.TaskRepository.GetTasksByAccount(authentificationManager.SignedInAccount.ID);
+            return View(tasks);
         }
     }
 }

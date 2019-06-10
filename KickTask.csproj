@@ -152,8 +152,6 @@
     <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\MainController.cs" />
-    <Compile Include="Database\AccountService.cs" />
-    <Compile Include="Database\TaskService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
