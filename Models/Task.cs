@@ -12,24 +12,26 @@ namespace KickTask.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Account
+    public partial class Task
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Account()
+        public Task()
         {
             this.TaskAccount = new HashSet<TaskAccount>();
+            this.Taskstep = new HashSet<Taskstep>();
         }
     
         public long ID { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string Fullname { get; set; }
-        public string EmailID { get; set; }
-        public bool AgreedPolicy { get; set; }
-        public bool IsEmailVerified { get; set; }
-        public string ActivationCode { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Text { get; set; }
+        public System.DateTime Bis { get; set; }
+        public long StatusID { get; set; }
     
+        public virtual Status Status { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TaskAccount> TaskAccount { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Taskstep> Taskstep { get; set; }
     }
 }

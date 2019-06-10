@@ -27,33 +27,7 @@
                     <p class="text-center">Get started with your free account</p>
                     <div class="lds-ring" id="loaderr"><div></div><div></div><div></div><div></div></div>
                     <div class="form-horizontal" id="registrationForm">
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-
-                        @{
-                            List<SelectListItem> listItems = new List<SelectListItem>();
-
-                            var Countries = new List<string>();
-                            CultureInfo[] CInfoList = CultureInfo.GetCultures(CultureTypes.SpecificCultures);
-                            foreach (CultureInfo CInfo in CInfoList)
-                            {
-                                RegionInfo R = new RegionInfo(CInfo.LCID);
-                                if (!(Countries.Contains(R.EnglishName)))
-                                {
-                                    Countries.Add(R.EnglishName.Trim());
-                                }
-                            }
-                            Countries.Sort();
-
-                            foreach (var country in Countries)
-                            {
-                                listItems.Add(new SelectListItem
-                                {
-                                    Text = country,
-                                    Value = country
-                                });
-                            }
-                        }
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })      
 
                         <div id="inputfeldgruppe">
                             <div class="form-group input-group" id="inputfeld">
@@ -89,27 +63,6 @@
                         <div id="inputfeldgruppe">
                             <div class="form-group input-group" id="inputfeld">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"> <i class="fa fa-birthday-cake"></i> </span>
-                                </div>
-                                @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @Value = DateTime.Today, @class = "form-control", placeholder = "Date of birth" } })
-                            </div>
-                            @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger errorLabel" })
-                        </div>
-
-                        <div id="inputfeldgruppe">
-                            <div class="form-group input-group" id="inputfeld">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"> <i class="fa fa-globe"></i> </span>
-                                </div>
-                                @Html.DropDownListFor(model => model.Country, listItems, "Country", new { @class = "form-control" })
-                            </div>
-                            @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger errorLabel" })
-                        </div>
-
-
-                        <div id="inputfeldgruppe">
-                            <div class="form-group input-group" id="inputfeld">
-                                <div class="input-group-prepend">
                                     <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                                 </div>
                                 @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password" } })
@@ -126,24 +79,6 @@
                             </div>
                             @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger errorLabel" })
                         </div>
-
-                        <div id="inputfeldgruppe">
-                            <div class="form-group input-group" id="inputfeld">
-                                <div id="wrapper">
-                                    <label id="elementInWrapper">For what purposes do you want to use ashton?</label>
-                                    <div id="elementInWrapper">
-                                        <div class="form-check">
-                                            @Html.RadioButton("UsagePurpose", "Professional") Professional Usage (in a working environment)
-                                        </div>
-                                        <div class="form-check">
-                                            @Html.RadioButton("UsagePurpose", "Non-Professional")   Nonprofessional Usage
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            @Html.ValidationMessageFor(model => model.UsagePurpose, "", new { @class = "text-danger errorLabel" })
-                        </div>
-
 
                         <div id="inputfeldgruppe" style="margin:0px">
                             @Html.CheckBox("AgreedPolicy", false)

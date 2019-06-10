@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="kicktaskdatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Fullname" Type="varchar" MaxLength="255" />
+    <Property Name="EmailID" Type="varchar" MaxLength="255" />
+    <Property Name="AgreedPolicy" Type="bit" />
+    <Property Name="IsEmailVerified" Type="bit" />
+    <Property Name="ActivationCode" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StatusText" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Task">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Text" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Bis" Type="datetime" Nullable="false" />
+    <Property Name="StatusID" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TaskAccount">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TaskID" Type="bigint" Nullable="false" />
+    <Property Name="AccountID" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Taskstep">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Text" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Position" Type="bigint" Nullable="false" />
+    <Property Name="TaskID" Type="bigint" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Task__StatusID__30F848ED">
+    <End Role="Status" Type="Self.Status" Multiplicity="1" />
+    <End Role="Task" Type="Self.Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TaskAccou__Accou__37A5467C">
+    <End Role="Account" Type="Self.Account" Multiplicity="1" />
+    <End Role="TaskAccount" Type="Self.TaskAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TaskAccount">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TaskAccou__TaskI__36B12243">
+    <End Role="Task" Type="Self.Task" Multiplicity="1" />
+    <End Role="TaskAccount" Type="Self.TaskAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Task">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TaskAccount">
+        <PropertyRef Name="TaskID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Taskstep__TaskID__33D4B598">
+    <End Role="Task" Type="Self.Task" Multiplicity="1" />
+    <End Role="Taskstep" Type="Self.Taskstep" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Task">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Taskstep">
+        <PropertyRef Name="TaskID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="kicktaskdatabaseModelStoreContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Task" EntityType="Self.Task" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaskAccount" EntityType="Self.TaskAccount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Taskstep" EntityType="Self.Taskstep" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Task__StatusID__30F848ED" Association="Self.FK__Task__StatusID__30F848ED">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Task" EntitySet="Task" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TaskAccou__Accou__37A5467C" Association="Self.FK__TaskAccou__Accou__37A5467C">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="TaskAccount" EntitySet="TaskAccount" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TaskAccou__TaskI__36B12243" Association="Self.FK__TaskAccou__TaskI__36B12243">
+      <End Role="Task" EntitySet="Task" />
+      <End Role="TaskAccount" EntitySet="TaskAccount" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Taskstep__TaskID__33D4B598" Association="Self.FK__Taskstep__TaskID__33D4B598">
+      <End Role="Task" EntitySet="Task" />
+      <End Role="Taskstep" EntitySet="Taskstep" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

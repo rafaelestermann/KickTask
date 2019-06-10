@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="015bd88d6dcb43d6ae25ae507ea9a59a" Name="Diagram1">
+        <EntityTypeShape EntityType="kicktaskdatabaseModel.Account" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="kicktaskdatabaseModel.Status" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="kicktaskdatabaseModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="kicktaskdatabaseModel.Task" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="kicktaskdatabaseModel.TaskAccount" Width="1.5" PointX="5.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="kicktaskdatabaseModel.Taskstep" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <AssociationConnector Association="kicktaskdatabaseModel.FK__TaskAccou__Accou__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="kicktaskdatabaseModel.FK__Task__StatusID__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="kicktaskdatabaseModel.FK__TaskAccou__TaskI__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="kicktaskdatabaseModel.FK__Taskstep__TaskID__33D4B598" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = "~/Views/Layout/LayoutBase.cshtml";
+    Layout = "~/Views/Shared/LayoutBase.cshtml";
 }
 <!DOCTYPE html>
 
@@ -7,35 +7,35 @@
 <body>
     @*TopImage*@
     <div id="informationheader">
-        <img src="~/Content/Resources/logowithtext.png" id="logo" />
+        <img src="~/Content/Resources/logowithtext.svg" id="logo" />
     </div>
 
     @*NavBar*@
-    <nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark" id="navigationBar">
-        <img src="~/Content/Resources/text2.png" id="logotext" />
-        <div class="collapse navbar-collapse" id="navigation">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#" id="menuitem">Overview</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" id="menuitem">Contacts</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" id="menuitem">My Assignments</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" id="menuitem" onclick="SignUp()" data-toggle="modal" data-target="#exampleModalCenter">Sign Up</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" id="menuitem" onclick="SignIn()" data-toggle="modal" data-target="#exampleModalCenter">Sign In</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Main/Account" id="menuitem">Account</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+<nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark" id="navigationBar">
+    <h1>KickTask</h1>
+    <div class="collapse navbar-collapse" id="navigation">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#" id="menuitem">Overview</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" id="menuitem">Contacts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" id="menuitem">My Assignments</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" id="menuitem" onclick="SignUp()" data-toggle="modal" data-target="#exampleModalCenter">Sign Up</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" id="menuitem" onclick="SignIn()" data-toggle="modal" data-target="#exampleModalCenter">Sign In</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Main/Account" id="menuitem">Account</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
 
 
