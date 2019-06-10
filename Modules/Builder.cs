@@ -15,7 +15,6 @@ namespace KickTask.Modules
             builder.RegisterType<DatabaseHandler>().As<IDatabaseHandler>().SingleInstance();
             builder.RegisterType<AuthentificationManager>().As<IAuthentificationManager>().SingleInstance();
             builder.RegisterType<KickTaskConnection>().SingleInstance();
-            builder.RegisterType<MainModel>().SingleInstance();
             Container = builder.Build();
         }
     }

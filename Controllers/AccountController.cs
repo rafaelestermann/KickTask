@@ -124,6 +124,7 @@ namespace KickTask.Controllers
             }
             else
             {
+                ViewBag.Status = false;
                 ModelState.AddModelError("UserExists", "Either your email or your password is wrong, try again!");
             }
 
