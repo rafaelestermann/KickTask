@@ -1,0 +1,58 @@
+﻿@model KickTask.Models.MainModel
+
+@{
+    /**/
+
+    ViewBag.Title = "Main";
+}
+
+@if(Model.LoggedInAccount != null)
+{
+    Layout = "~/Views/Shared/LayoutLoggedIn.cshtml";
+}
+else
+{
+    Layout = "~/Views/Shared/LayoutLoggedOut.cshtml";
+}
+
+@if (ViewBag.JavaScriptFunctions != null)
+{
+<script type="text/javascript">
+           @foreach (var function in ViewBag.JavaScriptFunctions)
+    {
+          @Html.Raw(function)
+    }
+
+</script>
+}
+<br />
+
+@if (Model.LoggedInAccount == null)
+{
+    <p>nobody is logged in</p>
+}
+else
+{
+    @Model.LoggedInAccount.Fullname
+    @Html.ActionLink("Logout", "Logout", "Account")
+}
+
+
+
+
+<br />
+<br />
+
+@*ModalContainer*@
+<div class="modal fade" id="registrationModal" tabindex="-1" role="dialog"></div>
+
+
+
+
+
+
+
+
+
+
+

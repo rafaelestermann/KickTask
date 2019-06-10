@@ -1,0 +1,73 @@
+﻿#navigationBar {
+    background: #428bca;
+    height: 80px;
+}
+
+#informationheader {
+    position: relative;
+    width: 100%;
+    background: whitesmoke;
+    height: 230px;
+}
+
+#ashtontextlogo {
+    height: 230px;
+    background: whitesmoke;
+    float: left;
+}
+
+
+#logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    height: 230px;
+}
+
+body {
+    background: whitesmoke;
+}
+
+#logotext
+{
+    height: 35px;
+    margin-left: 10px;
+}
+#navbaritem {
+    margin: 40px 0;
+}
+
+.navbar-icon-top .navbar-nav .nav-link > .fa {
+    position: relative;
+    width: 36px;
+    font-size: 24px;
+}
+
+#navigation
+{
+    margin-left: 40px;
+}
+
+#menuitem
+{
+    font-size: 18px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 140px;
+    margin-top: 30px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
