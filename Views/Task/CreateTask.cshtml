@@ -1,0 +1,174 @@
+﻿@model KickTask.Models.Task
+@using KickTask.KickTask;
+@using KickTask.Models;
+
+@{
+    var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+    ViewBag.Title = "CreateTask";
+    Layout = "~/Views/Shared/LayoutLoggedIn.cshtml";
+}
+
+@{
+    var dbHandler = new DatabaseHandler();
+    List<Account> allAccounts = dbHandler.AccountRepository.GetAllAccounts();
+}
+
+<h2>CreateTask</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Task</h4>
+        <h4>@Model.Name</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Bis, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Bis, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Bis, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Taskstep, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10">
+                <div id="stepcontainer">
+                    @if (Model?.Taskstep != null)
+                    {
+                        foreach (var step in Model.Taskstep)
+                        {
+                            <input class="form-control" readonly value="@step.Text" type="text" />
+                        }
+                    }
+                </div>
+                <div class="row" style="margin-top: 10px; margin-left: 3px;">
+                    <button type="button" id="saveTaskStepButton" class="btn btn-primary" onclick="SaveTaskStep()">Save</button>
+                    <button type="button" id="cancelTaskStepButton" style="float:left; margin-left: 5px;" class="btn btn-danger" onclick="Cancel()">Cancel</button>
+                    <button type="button" id="addTaskStepButton" class="btn btn-primary" onclick="AddTaskStep()">Add</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TaskAccount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <select class="custom-select" id="inputGroupSelect01" multiple>
+                @foreach (Account acc in allAccounts)
+                {
+                    <option value="@acc.ID">@acc.Fullname</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TaskAccount, htmlAttributes: new { @class = "control-label col-md-2" })
+
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    window.onload = function OnLoad() {
+        document.getElementById("addTaskStepButton").style.display = "block";
+        document.getElementById("saveTaskStepButton").style.display = "none";
+        document.getElementById("cancelTaskStepButton").style.display = "none";
+    }
+
+     $(document).ready(function() {
+        $('#example-getting-started').multiselect();
+    });
+
+    function Cancel() {
+        var form = document.getElementById("stepcontainer");
+        var elem = form.lastChild;
+        elem.parentNode.removeChild(elem);
+        document.getElementById("addTaskStepButton").style.display = "block";
+        document.getElementById("saveTaskStepButton").style.display = "none";
+        document.getElementById("cancelTaskStepButton").style.display = "none";
+    }
+
+    function AddTaskStep() {
+        var form = document.getElementById("stepcontainer");
+        var input = document.createElement("input");
+        input.classList.add("form-control");
+        input.type = "text";
+        input.name = input.id;
+        form.appendChild(input);
+        document.getElementById("addTaskStepButton").style.display = "none";
+        document.getElementById("saveTaskStepButton").style.display = "block";
+        document.getElementById("cancelTaskStepButton").style.display = "block";
+    }
+
+    function SaveTaskStep() {
+        var form = document.getElementById("stepcontainer");
+        var taskStepValue = form.lastChild.value;
+        var elem = form.lastChild;
+        elem.parentNode.removeChild(elem);
+        var input = document.createElement("input");
+        input.classList.add("form-control");
+        input.readOnly = true;
+        input.value = taskStepValue;
+        form.appendChild(input);
+        document.getElementById("addTaskStepButton").style.display = "block";
+        document.getElementById("saveTaskStepButton").style.display = "none";
+        document.getElementById("cancelTaskStepButton").style.display = "none";
+        var moadel = @Html.Raw(Json.Encode(Model));
+
+       $.post('@Url.Action("SaveTaskStep","Task")',
+  {
+      teext: "Donald Duck",
+      model: moadel
+  },
+  function(data, status){
+    alert("Data: " + data + "\nStatus: " + status);
+  });
+
+        //$.ajax({
+        //    type: "POST",
+        //    url: '/Task/SaveTaskStep',     //your action
+        //    data: teext: taskStepValue,
+        //    dataType: 'json',
+        //    success: function (result) {
+        //        console.log(result);
+        //    }
+        //})
+    }
+
+
+</script>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

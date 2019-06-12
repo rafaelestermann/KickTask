@@ -12,8 +12,6 @@ namespace KickTask.Models.Extendet
         [Required(AllowEmptyStrings = false, ErrorMessage = "Email is required")]
         public string Email { get; set; }
 
-
-
         [DataType(DataType.Password)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Password is required")]
 

@@ -8,7 +8,7 @@
 <h2>Tasks</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "CreateTask")
 </p>
 <table class="table">
     <tr>
@@ -19,7 +19,7 @@
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Status.ID)
+            @Html.DisplayNameFor(model => model.Status.StatusText)
         </th>
         <th></th>
     </tr>

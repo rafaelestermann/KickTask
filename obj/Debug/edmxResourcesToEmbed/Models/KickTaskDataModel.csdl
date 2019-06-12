@@ -19,7 +19,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="StatusText" Type="Int64" Nullable="false" />
+    <Property Name="StatusText" Type="Int64" />
     <NavigationProperty Name="Task" Relationship="Self.FK__Task__StatusID__30F848ED" FromRole="Status" ToRole="Task" />
   </EntityType>
   <EntityType Name="sysdiagrams">

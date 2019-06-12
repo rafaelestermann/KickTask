@@ -22,7 +22,6 @@ namespace KickTask.Controllers
         IContainer container = Builder.Container;
         IDatabaseHandler databaseHandler;
         IAuthentificationManager authentificationManager;
-
         public TaskController()
         {
             databaseHandler = container.Resolve<IDatabaseHandler>();
@@ -34,6 +33,35 @@ namespace KickTask.Controllers
         {            
             List<Task> tasks = databaseHandler.TaskRepository.GetTasksByAccount(authentificationManager.SignedInAccount.ID);
             return View(tasks);
+        }
+
+        [HttpPost]
+        public ActionResult SaveTaskStep(string teext, Task model)
+        {
+            var taskStep = new Taskstep();
+            taskStep.Text = "ff";
+          //  model.Taskstep.Add(taskStep);
+            return View("CreateTask");
+        }
+
+
+        [HttpGet]   
+        public ActionResult CreateTask()
+        {
+            var model = new Task();
+            model.Taskstep.Add(new Taskstep()
+            {
+                Text = "test"
+            });
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult CreateTask(Task model)
+        {
+            //VALIDIERUNG
+            databaseHandler.TaskRepository.CreateTask(model);
+            return View("Tasks");
         }
     }
 }

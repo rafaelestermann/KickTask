@@ -121,6 +121,12 @@ namespace KickTask.Controllers
                     ViewBag.Message = "Login successfully";
                     NotificationCenter.AddLoginNotification("Welcome " + account.Fullname);
                 }
+
+                else
+                {
+                    ViewBag.Status = false;
+                    ModelState.AddModelError("UserExists", "Either your email or your password is wrong, try again!");
+                }
             }
             else
             {

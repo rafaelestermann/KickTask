@@ -149,6 +149,7 @@
     <Compile Include="Business\Interfaces\IDatabaseHandler.cs" />
     <Compile Include="Business\Interfaces\ITaskRepository.cs" />
     <Compile Include="Business\NotificationCenter.cs" />
+    <Compile Include="Controllers\PartnerController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\MainController.cs" />
@@ -158,6 +159,8 @@
     <Compile Include="Models\Account.cs">
       <DependentUpon>KickTaskDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Extended\Status.cs" />
+    <Compile Include="Models\Extended\Task.cs" />
     <Compile Include="Models\Extended\Account.cs" />
     <Compile Include="Models\KickTaskDataModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -465,10 +468,11 @@
     <Content Include="Views\Main\Account.cshtml" />
     <Content Include="Views\Main\Main.cshtml" />
     <Content Include="Views\Task\Tasks.cshtml" />
+    <Content Include="Views\Task\CreateTask.cshtml" />
+    <Content Include="Views\Partner\Partners.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Partner\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

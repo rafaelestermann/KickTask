@@ -20,6 +20,18 @@ namespace KickTask.KickTask
             return connection.Account.FirstOrDefault(c => c.EmailID == email);
         }
 
+        public List<Account> GetAccountsByAccountId(long iD)
+        {
+            return connection.Account.ToList();
+            //var taskAccounts = connection.TaskAccount.Where(acc => acc.AccountID == iD);
+            //return taskAccounts.Any(taskAcc => taskAcc.AccountID != iD);
+        }
+
+        public List<Account> GetAllAccounts()
+        {
+            return connection.Account.ToList();
+        }
+
         public void InsertAccount(Account account)
         {
             connection.Account.Add(account);
