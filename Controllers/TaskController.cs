@@ -36,12 +36,13 @@ namespace KickTask.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveTaskStep(string teext, Task model)
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult SaveTaskStep(Task model)
         {
             var taskStep = new Taskstep();
             taskStep.Text = "ff";
-          //  model.Taskstep.Add(taskStep);
-            return View("CreateTask");
+            model.Taskstep.Add(taskStep);
+            return View("CreateTask", model);
         }
 
 

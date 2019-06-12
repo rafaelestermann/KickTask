@@ -16,7 +16,8 @@
 <br />
 <h2>CreateTask</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(null, null, new { @id = string.Empty }, FormMethod.Post,
+new { @id = "CNform" }))
 {
     @Html.AntiForgeryToken()
 
@@ -79,7 +80,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.TaskAccount, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.ListBoxFor(model => model.TaskAccountIDS, new MultiSelectList(allAccounts, "ID", "Fullname"), new { @class = "form-control"  })        
+            @Html.ListBoxFor(model => model.TaskAccountIDS, new MultiSelectList(allAccounts, "ID", "Fullname"), new { @class = "form-control" })
         </div>
 
         <div class="form-group">
@@ -131,35 +132,35 @@
         input.classList.add("form-control");
         input.readOnly = true;
         input.value = taskStepValue;
-        form.appendChild(input);
+        //form.appendChild(input);
         document.getElementById("addTaskStepButton").style.display = "block";
         document.getElementById("saveTaskStepButton").style.display = "none";
-        document.getElementById("cancelTaskStepButton").style.display = "none";
-        var moadel = @Html.Raw(Json.Encode(Model));
+        document.getElementById("cancelTaskStepButton").style.display = "none";       
+        var moddddel = $('#CNform').serialize();
 
-       $.post('@Url.Action("SaveTaskStep","Task")',
-  {
-      teext: "Donald Duck",
-      model: moadel
-  },
-  function(data, status){
-    alert("Data: " + data + "\nStatus: " + status);
-  });
 
-        //$.ajax({
-        //    type: "POST",
-        //    url: '/Task/SaveTaskStep',     //your action
-        //    data: teext: taskStepValue,
-        //    dataType: 'json',
-        //    success: function (result) {
-        //        console.log(result);
-        //    }
-        //})
+        var dataa = $('#CNform').serialize(); 
+        $.ajax({
+            type: 'POST',
+            dataType: 'html', 
+            cache: false,
+            url: '/Task/SaveTaskStep',
+            data: dataa,
+    success: function (data, textStatus, jqXHR) {
+      
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+     
+    }
+});
+
+
+
     }
 
 
 </script>
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Tasks")
 </div>
