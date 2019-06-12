@@ -470,6 +470,7 @@
     <Content Include="Views\Partner\Detail.cshtml" />
     <Content Include="Views\Account\AccountDetail.cshtml" />
     <Content Include="Views\Account\AccountEdit.cshtml" />
+    <Content Include="Views\Task\TaskDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

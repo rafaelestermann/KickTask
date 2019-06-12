@@ -9,11 +9,11 @@ namespace KickTask.Models
     [MetadataType(typeof(TaskMetaData))]
     public partial class Task
     {
-        
+        public List<int> TaskAccountIDS { get; set; }
     }
 
     public class TaskMetaData
-    {  
+    {
         [Display(Name = "Name")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Name is required")]
         public string Name { get; set; }
@@ -30,7 +30,7 @@ namespace KickTask.Models
         [DataType(DataType.Date)]
         public System.DateTime Bis { get; set; }
 
-
+        [Display(Name = "Accounts")]
         public virtual ICollection<TaskAccount> TaskAccount { get; set; }
 
         [Display(Name = "Tasksteps")]

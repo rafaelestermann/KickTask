@@ -9,5 +9,6 @@ namespace KickTask.KickTask.Interfaces
         void CreateTask(Task task);
         void UpdateTaskById(Task task);
         void DeleteTaskById(long id);
+        Task GetTasksById(long id);
     }
 }

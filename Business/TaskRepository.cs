@@ -23,7 +23,23 @@ namespace KickTask.KickTask
 
         public void CreateTask(Task task)
         {
+            task.StatusID = 3; //für open
             connection.Task.Add(task);
+            connection.SaveChanges();
+            foreach (var accountId in task.TaskAccountIDS)
+            {
+                CreateTaskAccount(task.ID, accountId);
+            }
+        }
+
+        private void CreateTaskAccount(long taskId, int accountId)
+        {
+            var taskAcc = new TaskAccount()
+            {
+                TaskID = taskId,
+                AccountID = accountId
+            };
+            connection.TaskAccount.Add(taskAcc);
             connection.SaveChanges();
         }
 
@@ -44,10 +60,23 @@ namespace KickTask.KickTask
                 connection.SaveChanges();
             }
 
+            //TaskAccounts löschen
+            var taskAcc = connection.TaskAccount.Where(tacc => tacc.Task.ID == id).ToList();
+            foreach(var tacc in taskAcc)
+            {
+                connection.TaskAccount.Remove(tacc);
+                connection.SaveChanges();
+            }
+
             //Task löschen
             var dbTask = connection.Task.Where(t => t.ID == id).First();
             connection.Task.Remove(dbTask);
             connection.SaveChanges();
+        }
+
+        public Task GetTasksById(long id)
+        {
+           return  connection.Task.FirstOrDefault(t => t.ID == id);
         }
     }
 }

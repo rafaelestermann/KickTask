@@ -49,11 +49,22 @@ namespace KickTask.Controllers
         public ActionResult CreateTask()
         {
             var model = new Task();
-            model.Taskstep.Add(new Taskstep()
-            {
-                Text = "test"
-            });
             return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult TaskDetail(long ID)
+        {
+            var model = databaseHandler.TaskRepository.GetTasksById(ID);
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult DeleteTask(int ID)
+        {
+            databaseHandler.TaskRepository.DeleteTaskById(ID);
+            List<Task> tasks = databaseHandler.TaskRepository.GetTasksByAccount(authentificationManager.SignedInAccount.ID);
+            return View("Tasks", tasks);
         }
 
         [HttpPost]
@@ -61,7 +72,8 @@ namespace KickTask.Controllers
         {
             //VALIDIERUNG
             databaseHandler.TaskRepository.CreateTask(model);
-            return View("Tasks");
+            List<Task> tasks = databaseHandler.TaskRepository.GetTasksByAccount(authentificationManager.SignedInAccount.ID);
+            return View("Tasks",tasks);
         }
     }
 }

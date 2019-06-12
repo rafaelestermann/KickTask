@@ -62,8 +62,8 @@ namespace KickTask.KickTask
                     result.Fullname = account.Fullname;
                     result.Username = account.Username;
                     result.EmailID = account.EmailID;
-
-                    result.ConfirmPassword = result.Password;
+                    result.Password = account.Password;
+                    result.ConfirmPassword = account.Password;
 
                     conn.SaveChanges();
                     connection = new KickTaskConnection();

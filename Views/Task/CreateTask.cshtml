@@ -22,7 +22,6 @@
 
     <div class="form-horizontal">
         <h4>Task</h4>
-        <h4>@Model.Name</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -80,16 +79,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.TaskAccount, htmlAttributes: new { @class = "control-label col-md-2" })
-            <select class="custom-select" id="inputGroupSelect01" multiple>
-                @foreach (Account acc in allAccounts)
-                {
-                    <option value="@acc.ID">@acc.Fullname</option>
-                }
-            </select>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.TaskAccount, htmlAttributes: new { @class = "control-label col-md-2" })
-
+            @Html.ListBoxFor(model => model.TaskAccountIDS, new MultiSelectList(allAccounts, "ID", "Fullname"), new { @class = "form-control"  })        
         </div>
 
         <div class="form-group">
