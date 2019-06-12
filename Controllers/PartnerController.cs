@@ -32,5 +32,12 @@ namespace KickTask.Controllers
             var model = databaseHandler.AccountRepository.GetAccountsByAccountId(authentificationManager.SignedInAccount.ID);
             return View(model);
         }
+
+        [HttpGet]
+        public ActionResult Detail(long id)
+        {
+            var model = databaseHandler.AccountRepository.GetAccountById(id);
+            return View(model);
+        }
     }
 }

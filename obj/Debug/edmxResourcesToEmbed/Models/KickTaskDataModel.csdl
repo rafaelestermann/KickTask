@@ -19,18 +19,8 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="StatusText" Type="Int64" />
+    <Property Name="StatusText" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Task" Relationship="Self.FK__Task__StatusID__30F848ED" FromRole="Status" ToRole="Task" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="Task">
     <Key>
@@ -117,7 +107,6 @@
   <EntityContainer Name="KickTaskConnection" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Account" EntityType="Self.Account" />
     <EntitySet Name="Status" EntityType="Self.Status" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <EntitySet Name="Task" EntityType="Self.Task" />
     <EntitySet Name="TaskAccount" EntityType="Self.TaskAccount" />
     <EntitySet Name="Taskstep" EntityType="Self.Taskstep" />

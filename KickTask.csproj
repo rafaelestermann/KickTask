@@ -162,6 +162,7 @@
     <Compile Include="Models\Extended\Status.cs" />
     <Compile Include="Models\Extended\Task.cs" />
     <Compile Include="Models\Extended\Account.cs" />
+    <Compile Include="Models\Extended\AccountLogin.cs" />
     <Compile Include="Models\KickTaskDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -177,12 +178,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>KickTaskDataModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Extended\AccountLogin.cs" />
     <Compile Include="Models\MainModel.cs" />
     <Compile Include="Models\Status.cs">
-      <DependentUpon>KickTaskDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>KickTaskDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Task.cs">
@@ -470,6 +467,9 @@
     <Content Include="Views\Task\Tasks.cshtml" />
     <Content Include="Views\Task\CreateTask.cshtml" />
     <Content Include="Views\Partner\Partners.cshtml" />
+    <Content Include="Views\Partner\Detail.cshtml" />
+    <Content Include="Views\Account\AccountDetail.cshtml" />
+    <Content Include="Views\Account\AccountEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

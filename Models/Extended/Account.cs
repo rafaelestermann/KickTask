@@ -10,6 +10,10 @@ namespace KickTask.Models
     public partial class Account
     {
         public string ConfirmPassword { get; set; }
+
+        public long OpenTasks { get; set; }
+
+        public long ClosedTasks { get; set; }
     }
 
     public class AccountMetaData

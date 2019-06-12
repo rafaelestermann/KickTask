@@ -13,6 +13,7 @@ namespace KickTask.Controllers
 {
     public class MainController : Controller
     {
+
         IContainer container = Builder.Container;
         IDatabaseHandler databaseHandler;
         IAuthentificationManager authentificationManager;

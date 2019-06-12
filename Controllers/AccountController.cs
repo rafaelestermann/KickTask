@@ -61,8 +61,8 @@ namespace KickTask.Controllers
                 #endregion
 
                 #region password hashing
-                account.Password = Crypto.Hash(account.Password);
-                account.ConfirmPassword = Crypto.Hash(account.ConfirmPassword);
+                account.Password = account.Password;
+                account.ConfirmPassword = account.ConfirmPassword;
                 #endregion
 
                 #region save to database
@@ -87,6 +87,31 @@ namespace KickTask.Controllers
             return View();
         }
 
+
+        [HttpGet]
+        public ActionResult AccountDetail()
+        {
+            var model = databaseHandler.AccountRepository.GetAccountById(authentificationManager.SignedInAccount.ID);
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult AccountEdit(long ID)
+        {
+            var model = databaseHandler.AccountRepository.GetAccountById(ID);
+            model.ConfirmPassword = model.Password;
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AccountEdit(Account account)
+        {
+            //VALIDATE
+            databaseHandler.AccountRepository.UpdateAccount(account);
+            var model = databaseHandler.AccountRepository.GetAccountById(authentificationManager.SignedInAccount.ID);
+            return View("AccountDetail", model);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(AccountLogin accountLogin)
@@ -99,7 +124,7 @@ namespace KickTask.Controllers
             var account = databaseHandler.AccountRepository.GetAccountByEmail(accountLogin.Email);
             if (account != null)
             {
-                if (string.Compare(Crypto.Hash(accountLogin.Password), account.Password) == 0)
+                if (string.Compare(accountLogin.Password, account.Password) == 0)
                 {
                     if (!account.IsEmailVerified)
                     {

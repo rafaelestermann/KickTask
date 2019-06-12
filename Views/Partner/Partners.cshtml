@@ -5,11 +5,10 @@
     Layout = "~/Views/Shared/LayoutLoggedIn.cshtml";
 }
 
+<br />
+<br />
 <h2>Partners</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -21,41 +20,25 @@
         <th>
             @Html.DisplayNameFor(model => model.Fullname)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EmailID)
-        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Username)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fullname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmailID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AgreedPolicy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsEmailVerified)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ActivationCode)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fullname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailID)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Detail", new { id = item.ID })
+            </td>
+        </tr>
+    }
 
 </table>

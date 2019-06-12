@@ -1,0 +1,58 @@
+﻿@model KickTask.Models.Account
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/LayoutLoggedIn.cshtml";
+}
+<br />
+<br />
+<h2>Detail</h2>
+
+<div>
+    <h4>Account</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Fullname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fullname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OpenTasks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OpenTasks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClosedTasks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClosedTasks)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Partners")
+</p>

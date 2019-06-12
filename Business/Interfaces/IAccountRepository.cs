@@ -11,5 +11,7 @@ namespace KickTask.KickTask.Interfaces
         bool IsEmailExisting(string emailId);
         List<Account> GetAllAccounts();
         List <Account> GetAccountsByAccountId(long iD);
+        Account GetAccountById(long id);
+        void UpdateAccount(Account account);
     }
 }
