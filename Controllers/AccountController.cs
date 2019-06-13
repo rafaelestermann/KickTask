@@ -104,8 +104,13 @@ namespace KickTask.Controllers
 
         [HttpPost]
         public ActionResult AccountEdit(Account account)
-        {
-            //VALIDATE
+        {        
+
+            if (!ModelState.IsValid)
+            {
+                return View("AccountEdit", account);
+            }
+
             databaseHandler.AccountRepository.UpdateAccount(account);
             var model = databaseHandler.AccountRepository.GetAccountById(authentificationManager.SignedInAccount.ID);
             return View("AccountDetail", model);

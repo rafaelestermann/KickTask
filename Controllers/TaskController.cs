@@ -71,6 +71,16 @@ namespace KickTask.Controllers
         public ActionResult TaskEdit(Task model)
         {
             databaseHandler.TaskRepository.UpdateTask(model);
+            if (model.TaskAccountIDS == null || !model.TaskAccountIDS.Any())
+            {
+                this.ModelState.AddModelError("AccountRequired", "Minimum one account must be assigned");
+                return View("TaskEdit", model);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View("TaskEdit", model);
+            }
             List<Task> tasks = databaseHandler.TaskRepository.GetTasksByAccount(authentificationManager.SignedInAccount.ID);
             return View("Tasks", tasks);
         }

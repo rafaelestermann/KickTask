@@ -19,7 +19,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
-        <th>
+        <th>            
             @Html.DisplayNameFor(model => model.Status.StatusText)
         </th>
         <th></th>
@@ -35,7 +35,7 @@
                 @Html.DisplayFor(modelItem => item.Bis)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Status.ID)
+                @Html.DisplayFor(modelItem => item.Status.StatusText)
             </td>
             <td>
                 @Html.ActionLink("Edit", "TaskEdit", new { id = item.ID }) |

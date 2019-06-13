@@ -18,20 +18,20 @@ namespace KickTask.Models
 
     public class AccountMetaData
     {
-        [Display(Name = "Full Name")]
+        [Display(Name = "Full Name*")]
         [Required(AllowEmptyStrings =false, ErrorMessage = "Fullname is required")]
         public string Fullname { get; set; }
 
-        [Display(Name = "Username")]
+        [Display(Name = "Username*")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Username is required")]
         public string Username { get; set; }
 
-        [Display(Name = "Email")]
+        [Display(Name = "Email*")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Email is required")]
         [DataType(DataType.EmailAddress)]
         public string EmailID { get; set; }
 
-        [Display(Name = "Password")]
+        [Display(Name = "Password*")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Password is required")]
         [DataType(DataType.Password)]
         [MinLength(6, ErrorMessage ="Minimum 6 characters required")]
@@ -42,7 +42,7 @@ namespace KickTask.Models
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
 
-        [Display(Name = "AgreedPolicy")]    
+        [Display(Name = "AgreedPolicy*")]    
         public bool AgreedPolicy { get; set; }
     }
 }
