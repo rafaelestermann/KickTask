@@ -31,9 +31,17 @@ namespace KickTask.KickTask
 
         public List<Account> GetAccountsByAccountId(long iD)
         {
-            return connection.Account.ToList();
-            //var taskAccounts = connection.TaskAccount.Where(acc => acc.AccountID == iD);
-            //return taskAccounts.Any(taskAcc => taskAcc.AccountID != iD);
+            var taskAccounts = connection.TaskAccount.Where(acc => acc.AccountID == iD).ToList();
+            List<Account> result = new List<Account>();
+            foreach (var taskOfMine in taskAccounts)
+            {
+                var otherInvolvedAccounts = connection.TaskAccount.Where(acc => acc.TaskID == taskOfMine.TaskID).ToList();
+                var partneraccs = otherInvolvedAccounts.Where(x => x.AccountID != iD).Select(acc => acc.Account).ToList();
+                result.AddRange(partneraccs);
+                
+            }
+
+            return result;
         }
 
         public List<Account> GetAllAccounts()

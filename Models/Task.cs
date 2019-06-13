@@ -18,7 +18,6 @@ namespace KickTask.Models
         public Task()
         {
             this.TaskAccount = new HashSet<TaskAccount>();
-            this.Taskstep = new HashSet<Taskstep>();
         }
     
         public long ID { get; set; }
@@ -31,7 +30,5 @@ namespace KickTask.Models
         public virtual Status Status { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TaskAccount> TaskAccount { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Taskstep> Taskstep { get; set; }
     }
 }

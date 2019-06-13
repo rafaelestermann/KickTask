@@ -188,9 +188,6 @@
     <Compile Include="Models\TaskAccount.cs">
       <DependentUpon>KickTaskDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Taskstep.cs">
-      <DependentUpon>KickTaskDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Modules\Builder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -471,6 +468,7 @@
     <Content Include="Views\Account\AccountDetail.cshtml" />
     <Content Include="Views\Account\AccountEdit.cshtml" />
     <Content Include="Views\Task\TaskDetail.cshtml" />
+    <Content Include="Views\Task\TaskEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -14,6 +14,8 @@ using KickTask.Models.Extendet;
 using System.Web.Helpers;
 using KickTask.KickTask;
 using KickTask.KickTask.Interfaces;
+using System.Reflection;
+using System.ComponentModel.DataAnnotations;
 
 namespace KickTask.Controllers
 {
@@ -30,23 +32,12 @@ namespace KickTask.Controllers
 
         [HttpGet]
         public ActionResult Tasks()
-        {            
+        {
             List<Task> tasks = databaseHandler.TaskRepository.GetTasksByAccount(authentificationManager.SignedInAccount.ID);
             return View(tasks);
         }
 
-        [HttpPost]
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult SaveTaskStep(Task model)
-        {
-            var taskStep = new Taskstep();
-            taskStep.Text = "ff";
-            model.Taskstep.Add(taskStep);
-            return View("CreateTask", model);
-        }
-
-
-        [HttpGet]   
+        [HttpGet]
         public ActionResult CreateTask()
         {
             var model = new Task();
@@ -61,6 +52,30 @@ namespace KickTask.Controllers
         }
 
         [HttpGet]
+        public ActionResult TaskEdit(long ID)
+        {
+            var model = databaseHandler.TaskRepository.GetTasksById(ID);
+            if(model.Status == null || model.Status.StatusText == "open")
+            {
+                model.IsFinished = false;
+            }
+            else
+            {
+                model.IsFinished = true;
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult TaskEdit(Task model)
+        {
+            databaseHandler.TaskRepository.UpdateTask(model);
+            List<Task> tasks = databaseHandler.TaskRepository.GetTasksByAccount(authentificationManager.SignedInAccount.ID);
+            return View("Tasks", tasks);
+        }
+
+        [HttpGet]
         public ActionResult DeleteTask(int ID)
         {
             databaseHandler.TaskRepository.DeleteTaskById(ID);
@@ -71,10 +86,20 @@ namespace KickTask.Controllers
         [HttpPost]
         public ActionResult CreateTask(Task model)
         {
-            //VALIDIERUNG
+            if (model.TaskAccountIDS == null || !model.TaskAccountIDS.Any())
+            {
+                this.ModelState.AddModelError("AccountRequired", "Minimum one account must be assigned");
+                return View("CreateTask", model);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View("CreateTask", model);
+            }
+
             databaseHandler.TaskRepository.CreateTask(model);
             List<Task> tasks = databaseHandler.TaskRepository.GetTasksByAccount(authentificationManager.SignedInAccount.ID);
-            return View("Tasks",tasks);
+            return View("Tasks", tasks);
         }
     }
 }

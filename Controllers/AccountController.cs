@@ -37,8 +37,7 @@ namespace KickTask.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Registration([Bind(Exclude = "IsEmailVerified, ActivationCode")] Account account)
-        {
-            //Model Validierung
+        {            
             if (ModelState.IsValid)
             {
                 #region email already exists

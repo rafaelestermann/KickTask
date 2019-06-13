@@ -12,6 +12,7 @@
     var dbHandler = new DatabaseHandler();
     List<Account> allAccounts = dbHandler.AccountRepository.GetAllAccounts();
 }
+<div id="page"></div>
 <br />
 <br />
 <h2>CreateTask</h2>
@@ -55,32 +56,12 @@ new { @id = "CNform" }))
                 @Html.EditorFor(model => model.Bis, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Bis, "", new { @class = "text-danger" })
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Taskstep, htmlAttributes: new { @class = "control-label col-md-2" })
-
-            <div class="col-md-10">
-                <div id="stepcontainer">
-                    @if (Model?.Taskstep != null)
-                    {
-                        foreach (var step in Model.Taskstep)
-                        {
-                            <input class="form-control" readonly value="@step.Text" type="text" />
-                        }
-                    }
-                </div>
-                <div class="row" style="margin-top: 10px; margin-left: 3px;">
-                    <button type="button" id="saveTaskStepButton" class="btn btn-primary" onclick="SaveTaskStep()">Save</button>
-                    <button type="button" id="cancelTaskStepButton" style="float:left; margin-left: 5px;" class="btn btn-danger" onclick="Cancel()">Cancel</button>
-                    <button type="button" id="addTaskStepButton" class="btn btn-primary" onclick="AddTaskStep()">Add</button>
-                </div>
-            </div>
-        </div>
+        </div>     
 
         <div class="form-group">
             @Html.LabelFor(model => model.TaskAccount, htmlAttributes: new { @class = "control-label col-md-2" })
             @Html.ListBoxFor(model => model.TaskAccountIDS, new MultiSelectList(allAccounts, "ID", "Fullname"), new { @class = "form-control" })
+            @Html.ValidationMessage("AccountRequired", new { @class = "text-danger errorLabel" })
         </div>
 
         <div class="form-group">
@@ -92,73 +73,9 @@ new { @id = "CNform" }))
 }
 
 <script type="text/javascript">
-    window.onload = function OnLoad() {
-        document.getElementById("addTaskStepButton").style.display = "block";
-        document.getElementById("saveTaskStepButton").style.display = "none";
-        document.getElementById("cancelTaskStepButton").style.display = "none";
-    }
-
-     $(document).ready(function() {
+    $(document).ready(function () {
         $('#example-getting-started').multiselect();
     });
-
-    function Cancel() {
-        var form = document.getElementById("stepcontainer");
-        var elem = form.lastChild;
-        elem.parentNode.removeChild(elem);
-        document.getElementById("addTaskStepButton").style.display = "block";
-        document.getElementById("saveTaskStepButton").style.display = "none";
-        document.getElementById("cancelTaskStepButton").style.display = "none";
-    }
-
-    function AddTaskStep() {
-        var form = document.getElementById("stepcontainer");
-        var input = document.createElement("input");
-        input.classList.add("form-control");
-        input.type = "text";
-        input.name = input.id;
-        form.appendChild(input);
-        document.getElementById("addTaskStepButton").style.display = "none";
-        document.getElementById("saveTaskStepButton").style.display = "block";
-        document.getElementById("cancelTaskStepButton").style.display = "block";
-    }
-
-    function SaveTaskStep() {
-        var form = document.getElementById("stepcontainer");
-        var taskStepValue = form.lastChild.value;
-        var elem = form.lastChild;
-        elem.parentNode.removeChild(elem);
-        var input = document.createElement("input");
-        input.classList.add("form-control");
-        input.readOnly = true;
-        input.value = taskStepValue;
-        //form.appendChild(input);
-        document.getElementById("addTaskStepButton").style.display = "block";
-        document.getElementById("saveTaskStepButton").style.display = "none";
-        document.getElementById("cancelTaskStepButton").style.display = "none";       
-        var moddddel = $('#CNform').serialize();
-
-
-        var dataa = $('#CNform').serialize(); 
-        $.ajax({
-            type: 'POST',
-            dataType: 'html', 
-            cache: false,
-            url: '/Task/SaveTaskStep',
-            data: dataa,
-    success: function (data, textStatus, jqXHR) {
-      
-    },
-    error: function (jqXHR, textStatus, errorThrown) {
-     
-    }
-});
-
-
-
-    }
-
-
 </script>
 
 <div>

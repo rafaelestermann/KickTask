@@ -44,15 +44,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Taskstep">
-      <EntityTypeMapping TypeName="kicktaskdatabaseModel.Taskstep">
-        <MappingFragment StoreEntitySet="Taskstep">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Text" ColumnName="Text" />
-          <ScalarProperty Name="Position" ColumnName="Position" />
-          <ScalarProperty Name="TaskID" ColumnName="TaskID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

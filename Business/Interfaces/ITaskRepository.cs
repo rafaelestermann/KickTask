@@ -7,7 +7,7 @@ namespace KickTask.KickTask.Interfaces
     {
         List<Task> GetTasksByAccount(long AccountId);
         void CreateTask(Task task);
-        void UpdateTaskById(Task task);
+        void UpdateTask(Task task);
         void DeleteTaskById(long id);
         Task GetTasksById(long id);
     }

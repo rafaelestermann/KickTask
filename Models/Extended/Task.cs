@@ -9,6 +9,7 @@ namespace KickTask.Models
     [MetadataType(typeof(TaskMetaData))]
     public partial class Task
     {
+        public bool IsFinished { get; set; }
         public List<int> TaskAccountIDS { get; set; }
     }
 
@@ -32,8 +33,5 @@ namespace KickTask.Models
 
         [Display(Name = "Accounts")]
         public virtual ICollection<TaskAccount> TaskAccount { get; set; }
-
-        [Display(Name = "Tasksteps")]
-        public virtual ICollection<Taskstep> Taskstep { get; set; }
     }
 }

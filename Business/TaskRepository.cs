@@ -43,23 +43,27 @@ namespace KickTask.KickTask
             connection.SaveChanges();
         }
 
-        public void UpdateTaskById(Task task)
+        public void UpdateTask(Task task)
         {
+            if(task.IsFinished)
+            {
+                task.StatusID = 4; //closed
+            }
+            else
+            {
+                task.StatusID = 3; //open
+            }
             var dbTask = connection.Task.Where(t => t.ID == task.ID).First();
-            dbTask = task;
+            dbTask.Name = task.Name;
+            dbTask.StatusID = task.StatusID;
+            dbTask.TaskAccountIDS = task.TaskAccountIDS;
+            dbTask.Text = task.Text;
             connection.SaveChanges();
+            connection = new KickTaskConnection();
         }
 
         public void DeleteTaskById(long id)
-        {
-            //Tasksteps löschen
-            var tasksteps = connection.Taskstep.Where(tstep => tstep.TaskID == id).ToList();
-            foreach (var taskstep in tasksteps)
-            {
-                connection.Taskstep.Remove(taskstep);
-                connection.SaveChanges();
-            }
-
+        {          
             //TaskAccounts löschen
             var taskAcc = connection.TaskAccount.Where(tacc => tacc.Task.ID == id).ToList();
             foreach(var tacc in taskAcc)

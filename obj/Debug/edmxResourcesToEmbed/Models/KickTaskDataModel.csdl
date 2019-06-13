@@ -34,7 +34,6 @@
     <Property Name="StatusID" Type="Int64" Nullable="false" />
     <NavigationProperty Name="Status" Relationship="Self.FK__Task__StatusID__30F848ED" FromRole="Task" ToRole="Status" />
     <NavigationProperty Name="TaskAccount" Relationship="Self.FK__TaskAccou__TaskI__36B12243" FromRole="Task" ToRole="TaskAccount" />
-    <NavigationProperty Name="Taskstep" Relationship="Self.FK__Taskstep__TaskID__33D4B598" FromRole="Task" ToRole="Taskstep" />
   </EntityType>
   <EntityType Name="TaskAccount">
     <Key>
@@ -45,16 +44,6 @@
     <Property Name="AccountID" Type="Int64" Nullable="false" />
     <NavigationProperty Name="Account" Relationship="Self.FK__TaskAccou__Accou__37A5467C" FromRole="TaskAccount" ToRole="Account" />
     <NavigationProperty Name="Task" Relationship="Self.FK__TaskAccou__TaskI__36B12243" FromRole="TaskAccount" ToRole="Task" />
-  </EntityType>
-  <EntityType Name="Taskstep">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Text" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Position" Type="Int64" Nullable="false" />
-    <Property Name="TaskID" Type="Int64" Nullable="false" />
-    <NavigationProperty Name="Task" Relationship="Self.FK__Taskstep__TaskID__33D4B598" FromRole="Taskstep" ToRole="Task" />
   </EntityType>
   <Association Name="FK__TaskAccou__Accou__37A5467C">
     <End Role="Account" Type="Self.Account" Multiplicity="1" />
@@ -92,24 +81,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Taskstep__TaskID__33D4B598">
-    <End Role="Task" Type="Self.Task" Multiplicity="1" />
-    <End Role="Taskstep" Type="Self.Taskstep" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Task">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Taskstep">
-        <PropertyRef Name="TaskID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="KickTaskConnection" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Account" EntityType="Self.Account" />
     <EntitySet Name="Status" EntityType="Self.Status" />
     <EntitySet Name="Task" EntityType="Self.Task" />
     <EntitySet Name="TaskAccount" EntityType="Self.TaskAccount" />
-    <EntitySet Name="Taskstep" EntityType="Self.Taskstep" />
     <AssociationSet Name="FK__TaskAccou__Accou__37A5467C" Association="Self.FK__TaskAccou__Accou__37A5467C">
       <End Role="Account" EntitySet="Account" />
       <End Role="TaskAccount" EntitySet="TaskAccount" />
@@ -121,10 +97,6 @@
     <AssociationSet Name="FK__TaskAccou__TaskI__36B12243" Association="Self.FK__TaskAccou__TaskI__36B12243">
       <End Role="Task" EntitySet="Task" />
       <End Role="TaskAccount" EntitySet="TaskAccount" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Taskstep__TaskID__33D4B598" Association="Self.FK__Taskstep__TaskID__33D4B598">
-      <End Role="Task" EntitySet="Task" />
-      <End Role="Taskstep" EntitySet="Taskstep" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

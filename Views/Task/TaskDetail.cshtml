@@ -44,20 +44,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Taskstep)
-        </dt>
-
-        <dd>
-            @if (Model?.Taskstep != null)
-            {
-                foreach (var step in Model.Taskstep)
-                {
-                    <input class="form-control" readonly value="@step.Text" type="text" />
-                }
-            }
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.TaskAccount)
         </dt>
 

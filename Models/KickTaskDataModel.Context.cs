@@ -29,6 +29,5 @@ namespace KickTask.Models
         public virtual DbSet<Status> Status { get; set; }
         public virtual DbSet<Task> Task { get; set; }
         public virtual DbSet<TaskAccount> TaskAccount { get; set; }
-        public virtual DbSet<Taskstep> Taskstep { get; set; }
     }
 }
